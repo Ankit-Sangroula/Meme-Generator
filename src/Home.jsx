@@ -3,15 +3,15 @@ import Header from "./component/Header";
 
 export default function Home() {
     const [meme, setMeme] = useState({
-        topText:"One does not simply",
-        bottomText:"Walk into Mordor",
+        topText:"One does",
+        bottomText:"Walk",
         imageUrl:"http://i.imgflip.com/1bij.jpg",
     });
-    function handletoptext (event){
-      const {value} = event.currentTarget
+    function handlechange (event){
+      const {value, name} = event.currentTarget
       setMeme(prevMeme => ({
         ...prevMeme,
-        topText: value,
+       [name]: value,
       }))
     }
   return (
@@ -26,7 +26,8 @@ export default function Home() {
               placeholder="One does not simply"
               name="topText"
               className="w-full mt-[5px] rounded-[5px] border border-[#D5D4D8] indent-[5px] min-h-10 font-[Karla]"
-              onChange={handletoptext}
+              onChange={handlechange}
+              value={meme.topText}
             />
           </label>
 
@@ -37,6 +38,9 @@ export default function Home() {
               placeholder="Walk into Mordor"
               name="bottomText"
               className="w-full mt-[5px] rounded-[5px] border border-[#D5D4D8] indent-[5px] min-h-10 font-[Karla]"
+              value={meme.bottomText}
+              onChange={handlechange}
+
             />
           </label>
 
