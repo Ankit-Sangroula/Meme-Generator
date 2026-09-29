@@ -7,6 +7,13 @@ export default function Home() {
         bottomText:"Walk into Mordor",
         imageUrl:"http://i.imgflip.com/1bij.jpg",
     });
+    function handletoptext (event){
+      const {value} = event.currentTarget
+      setMeme(prevMeme => ({
+        ...prevMeme,
+        topText: value,
+      }))
+    }
   return (
     <div>
       <Header />
@@ -19,6 +26,7 @@ export default function Home() {
               placeholder="One does not simply"
               name="topText"
               className="w-full mt-[5px] rounded-[5px] border border-[#D5D4D8] indent-[5px] min-h-10 font-[Karla]"
+              onChange={handletoptext}
             />
           </label>
 
