@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./component/Header";
 
 export default function Home() {
+  const [memes, setMemes] = useState([])
     const [meme, setMeme] = useState({
         topText:"One does",
         bottomText:"Walk",
         imageUrl:"http://i.imgflip.com/1bij.jpg",
     });
+
+    useEffect(() => {
+      fetch("https://api.imgflip.com/get_memes")
+      .then(response => response.json())
+      .then(data => {
+        setMemes(data.data.memes)
+      })
+    }, [])
     function handlechange (event){
       const {value, name} = event.currentTarget
       setMeme(prevMeme => ({
