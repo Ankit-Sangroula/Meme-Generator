@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./component/Header";
 
 export default function Home() {
-  const [memes, setMemes] = useState([])
+  const [allmemes, setAllMemes] = useState([])
     const [meme, setMeme] = useState({
         topText:"One does",
         bottomText:"Walk",
@@ -13,7 +13,7 @@ export default function Home() {
       fetch("https://api.imgflip.com/get_memes")
       .then(response => response.json())
       .then(data => {
-        setMemes(data.data.memes)
+        setAllMemes(data.data.memes)
       })
     }, [])
     function handlechange (event){
