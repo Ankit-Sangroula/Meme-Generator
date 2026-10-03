@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./component/Header";
 
 export default function Home() {
-  const [allmemes, setAllMemes] = useState([])
+  const [allMemes, setAllMemes] = useState([])
     const [meme, setMeme] = useState({
         topText:"One does",
         bottomText:"Walk",
@@ -16,6 +16,14 @@ export default function Home() {
         setAllMemes(data.data.memes)
       })
     }, [])
+    function getMemeImage() {
+        const randomNumber = Math.floor(Math.random() * allMemes.length)
+        const newMemeUrl = allMemes[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            imageUrl: newMemeUrl
+        }))
+    }
     function handlechange (event){
       const {value, name} = event.currentTarget
       setMeme(prevMeme => ({
@@ -53,7 +61,8 @@ export default function Home() {
             />
           </label>
 
-          <button className="col-span-2 rounded-[5px] bg-linear-to-r from-[#711F8D] to-[#A818DA] text-white border-0 cursor-pointer min-h-10 font-[Karla]">
+          <button className="col-span-2 rounded-[5px] bg-linear-to-r from-[#711F8D] to-[#A818DA] text-white border-0 cursor-pointer min-h-10 font-[Karla]"
+          onClick={getMemeImage}>
             Get a new meme image 🖼
           </button>
         </div>
